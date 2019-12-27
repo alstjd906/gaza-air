@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.gaza.myapp.account.member.MemberInterface">
+	<select id="login" resultType="kr.gaza.myapp.account.member.MemberVO">
+		select memberNum, memberNameKor, memberId from member where memberid=#{memberId} and memberpwd=#{memberPwd}
+	</select>
+	<insert id="insertRecord" parameterType="kr.gaza.myapp.account.member.MemberVO">
+		insert into member(memberNum, memberId, memberPwd, memberNameKor, memberNameEng, nation, gender, tel, altTel, 
+		zipcode, addr, detailaddr, email, birthday, agree, directronic, flightCnt, regdate) 
+		values(membernum_sq.nextVal, #{memberId}, #{memberPwd}, #{memberNameKor}, #{memberNameEng}, #{nation}, #{gender}, #{tel},
+		 #{altTel}, #{zipcode}, #{addr}, #{detailAddr}, #{email}, #{birthDay}, #{agree}, #{directronic}, 0, sysdate)
+	</insert>
+	<select id="idCheck" parameterType="String" resultType="boolean">
+		select count(memberId) from member where memberId=#{id}
+	</select>
+	<select id="getMember" parameterType="kr.gaza.myapp.account.member.MemberVO" resultType="kr.gaza.myapp.account.member.MemberVO">
+		select memberNum, memberId, memberPwd, memberNameKor, memberNameEng, nation, gender, tel, altTel, 
+		zipcode, addr, detailaddr, email, birthday, agree, directronic, flightCnt, regdate
+		 from member where memberId=#{memberId}
+	</select>
+	<delete id="delAccount" parameterType="kr.gaza.myapp.account.member.MemberVO">
+		delete from member where memberId=#{memberId} and memberPwd=#{memberPwd}
+	</delete>
+	<select id="pwdChk" parameterType="kr.gaza.myapp.account.member.MemberVO" resultType="int">
+		select count(memberId) from member where memberId=#{memberId} and memberPwd=#{memberPwd}
+	</select>
+	<update id="updatePassword" parameterType="String">
+		update member set memberPwd=#{param3} where memberId=#{param1} and memberPwd=#{param2}
+	</update>
+	<update id="updateRecord" parameterType="kr.gaza.myapp.account.member.MemberVO">
+		update member set 
+		nation=#{nation}, tel=#{tel}, altTel=#{altTel}, zipcode=#{zipcode}, addr=#{addr}, detailAddr=#{detailAddr}, 
+		email=#{email}, agree=#{agree}, directronic=#{directronic}  
+		where memberid=#{memberId}
+	</update>
+	<select id="findId" parameterType="kr.gaza.myapp.account.member.MemberVO" resultType="String">
+		select memberId from member where memberNameKor=#{memberNameKor} and birthday=#{birthDay} and email=#{email}
+	</select>
+	<select id="findPw" parameterType="kr.gaza.myapp.account.member.MemberVO" resultType="String">
+		select memberPwd from member where memberId=#{memberId} and memberNameKor=#{memberNameKor} and birthday=#{birthDay} and email=#{email}
+	</select>
+</mapper>

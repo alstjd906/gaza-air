@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.gaza.myapp.flight.booking.BookingInterface">
+    <select id="getProductVO" resultType="kr.gaza.myapp.aviation.product.ProductVO">
+        select
+            productnum, depart, arrive, price, sale as productSale
+        from
+            product
+        where
+            depart = #{from} and arrive = #{to}
+    </select>
+
+    <select id="getFlightVO" resultType="kr.gaza.myapp.aviation.flight.FlightVO">
+        select
+            FLIGHTNUM, AIRPLANENAME, DEPARTTIME, ARRIVETIME, SALE as flightSale
+        from
+            FLIGHT
+        where
+            PRODUCTNUM=${productNum} and DEPARTTIME like '${flightDate}%'
+        order by
+            DEPARTTIME
+    </select>
+
+    <select id="getSeatLeft" parameterType="kr.gaza.myapp.aviation.flight.FlightVO" resultType="java.lang.Integer">
+        select
+            count(seatreservenum)
+        from
+            SEATRESERVE
+        where
+            FLIGHTNUM in
+            <foreach collection="flightList" item="flightVO" index="index" separator="," open="(" close=")">
+                ${flightVO.flightNum}
+            </foreach>
+            and RESERVED = 0
+        group by
+            FLIGHTNUM
+    </select>
+
+    <insert id="addPassenger" parameterType="kr.gaza.myapp.flight.booking.PassengerVO">
+        insert into
+            passenger
+        values(passenger_sq.nextval, #{peopleNum}, #{passengerName}, #{passengerBirth}, #{passengerMemberNum}, #{PassengerDiscount}, #{flightNum})
+    </insert>
+
+    <select id="getFlightList" parameterType="String" resultType="kr.gaza.myapp.aviation.flight.FlightVO">
+        select
+            FLIGHTNUM, AIRPLANENAME, PRODUCTNUM, DEPARTTIME, ARRIVETIME, SALE
+        from
+            FLIGHT
+        where
+            FLIGHTNUM in
+            <foreach collection="list" item="flightNum" index="index" separator="," open="(" close=")">
+                #{flightNum}
+            </foreach>
+    </select>
+</mapper>

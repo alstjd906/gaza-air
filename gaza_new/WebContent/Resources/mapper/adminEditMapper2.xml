@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.gaza.myapp.admin.AdminEditInterface2">
+<insert id="insertSeat" parameterType="kr.gaza.myapp.admin.AdminVO2">
+	insert into seat values(seat_sq.nextval, #{seatTypeName})
+</insert>
+<select id="seatAllSelect" resultType="kr.gaza.myapp.admin.AdminVO2">
+	select seatType, seatContent from seat where seatType =#{seatType}
+</select>
+<update id="updateSeat" parameterType="kr.gaza.myapp.admin.AdminVO2">
+		update seat set seatContent=#{seatTypeName} where seatType=#{seatType}
+</update>
+<delete id="deleteSeat" parameterType="kr.gaza.myapp.admin.AdminVO2">
+	delete from seat where seatType=#{seatType}
+</delete>
+<insert id="insertSeatReserve" parameterType="kr.gaza.myapp.admin.AdminVO2">
+	INSERT INTO seatreserve VALUES(seatreservenum_sq.nextval,#{flightNum},#{seatType},#{seatNo},#{reserved})
+</insert>
+<select id="seatReserveAllSelect" resultType="kr.gaza.myapp.admin.AdminVO2">
+	select seatReservenum, flightnum, seatType, seatNo, reserved from seatreserve where seatreservenum =#{seatReserveNum}
+</select>
+<update id="updateSeatReserve" parameterType="kr.gaza.myapp.admin.AdminVO2">
+		update seatreserve set flightnum=#{flightNum}, seatType=#{seatType}, seatNo=#{seatNo}, reserved=#{reserved} where seatReserveNum=#{seatReserveNum}
+</update>
+<delete id="deleteSeatReserve" parameterType="kr.gaza.myapp.admin.AdminVO2">
+	delete from seatreserve where seatreservenum=#{seatReserveNum}
+</delete>
+<insert id="insertPeople" parameterType="kr.gaza.myapp.admin.AdminVO2">
+	INSERT INTO people VALUES(people_sq.nextval,#{peopleType},#{peopleSale})
+</insert>
+<select id="peopleAllSelect" resultType="kr.gaza.myapp.admin.AdminVO2">
+	select peoplenum, peopleType, peopleSale from people where peoplenum =#{peopleNum}
+</select>
+<update id="updatePeople" parameterType="kr.gaza.myapp.admin.AdminVO2">
+		update people set peopleType=#{peopleType}, peopleSale=#{peopleSale} where peoplenum=#{peopleNum}
+</update>
+<delete id="deletePeople" parameterType="kr.gaza.myapp.admin.AdminVO2">
+	delete from people where peoplenum=#{peopleNum}
+</delete>
+<insert id="insertFood" parameterType="kr.gaza.myapp.admin.AdminVO2">
+	INSERT INTO food VALUES(food_sq.nextval,#{foodType},#{foodName},#{foodImg},#{foodContent},#{foodIngredient},#{foodPrice})
+</insert>
+<select id="foodAllSelect" resultType="kr.gaza.myapp.admin.AdminVO2">
+	select foodnum, foodType, foodName, foodImg, foodContent, foodIngredient, foodPrice from food where foodnum =#{foodNum}
+</select>
+<update id="updateFood" parameterType="kr.gaza.myapp.admin.AdminVO2">
+		update food set foodType=#{foodType}, foodName=#{foodName}, foodImg=#{foodImg}, foodContent=#{foodContent}, foodIngredient=#{foodIngredient}, foodPrice=#{foodPrice} where foodnum=#{foodNum}
+</update>
+<delete id="deleteFood" parameterType="kr.gaza.myapp.admin.AdminVO2">
+	delete from food where foodNum=#{foodNum}
+</delete>
+</mapper>

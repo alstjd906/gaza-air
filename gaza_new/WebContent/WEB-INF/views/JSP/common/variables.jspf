@@ -1,0 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String resources = path+"/Resources";
+	String vendor = path+"/Vendor";
+	String js = resources+"/JS";
+	String img = resources+"/IMG";
+	String css = resources+"/CSS";
+	String jsp = path+"/JSP";
+%>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.gaza.myapp.admin.AdminEditInterface">
+<insert id="insertAdmin" parameterType="kr.gaza.myapp.admin.AdminVO">
+	insert into admin(adminnum, adminid, adminpwd, adminname, admintel, adminemail, adminregdate)
+		values(adminnum_sq.nextval, #{adminId}, #{adminPwd}, #{adminName}, #{adminTel}, #{adminEmail}, sysdate)
+</insert>
+
+<delete id="deleteAdmin">
+		delete from admin where adminnum=#{adminNum} 
+</delete>
+
+<insert id="insertAirport" parameterType="kr.gaza.myapp.aviation.airport.AirportVO">
+	insert into airport(airportnum, iata, city, continent, latitude, longitude, cityimg)
+		values(airport_sq.nextval, #{IATA}, #{city}, #{continent}, #{latitude}, #{longitude}, #{cityImg})
+</insert>
+<select id="airportAllSelect" resultType="kr.gaza.myapp.aviation.airport.AirportVO">
+	select airportNum, iata, city, continent, latitude, longitude, cityimg from airport where airportNum=#{airportNum}
+</select>
+<update id="updateAirport" parameterType="kr.gaza.myapp.aviation.airport.AirportVO">
+		update airport set iata=#{IATA}, city=#{city}, continent=#{continent}, latitude=#{latitude}, longitude=#{longitude}, cityimg=#{cityImg} where airportNum=#{airportNum}
+</update>
+
+<delete id="deleteAirport">
+		delete from airport where airportnum=#{airportNum} 
+</delete>
+
+<insert id="insertAirplane" parameterType="kr.gaza.myapp.aviation.airplane.AirplaneVO">
+	insert into airplane(airplanename, seatmax) values(#{airplaneName}, #{seatMax})
+</insert>
+<select id="airplaneAllSelect" resultType="kr.gaza.myapp.aviation.airplane.AirplaneVO">
+	select airplaneName, seatMax from airplane where airplaneName=#{airplaneName}
+</select>
+<update id="updateAirplane"  parameterType="kr.gaza.myapp.aviation.airplane.AirplaneVO">
+		update airplane set seatMax=#{seatMax} where airplaneName=#{airplaneName}
+</update>
+
+<delete id="deleteAirplane">
+		delete from airplane where airplaneName=#{airplaneName} 
+</delete>
+
+<insert id="insertProduct" parameterType="kr.gaza.myapp.aviation.product.ProductVO">
+	insert into product(productnum, depart, arrive, price, productcnt, sale, regdate) 
+		values(productnum_sq.nextval, #{depart}, #{arrive}, #{price}, #{productCnt}, #{productSale}, sysdate)
+</insert>
+
+<select id="productAllSelect" resultType="kr.gaza.myapp.aviation.product.ProductVO">
+	select productnum, depart, arrive, price, productcnt, sale AS productSale, to_char(regdate,'YYYY-MM-DD') regdate from product where productnum =#{productNum}
+</select>
+
+<update id="updateProduct" parameterType="kr.gaza.myapp.aviation.product.ProductVO">
+		update product set depart=#{depart}, arrive=#{arrive}, price=#{price}, sale=#{productSale} where productnum=#{productNum}
+</update>
+	
+<delete id="deleteProduct">
+		delete from product where productnum=#{productNum} 
+</delete>
+
+<insert id="insertFlight" parameterType="kr.gaza.myapp.aviation.flight.FlightVO">
+	insert into flight(flightnum, airplanename, productnum, departtime, arrivetime, sale) 
+		values(flightnum_sq.nextval, #{airplaneName}, #{productNum}, #{departTime}, #{arriveTime}, #{flightSale})
+</insert>
+<select id="flightAllSelect" resultType="kr.gaza.myapp.aviation.flight.FlightVO">
+	select flightnum, airplanename, productnum, departtime, arrivetime, sale from flight where flightnum =#{flightNum}
+</select>
+
+<update id="updateFlight" parameterType="kr.gaza.myapp.aviation.flight.FlightVO">
+		update flight set airplanename=#{airplaneName}, productnum=#{productNum}, departtime=#{departTime}, arrivetime=#{arriveTime}, sale=#{flightSale} where flightnum=#{flightNum}
+</update>
+
+<delete id="deleteFlight">
+		delete from flight where flightnum=#{flightNum} 
+</delete>
+
+<insert id="insertNotice" parameterType="kr.gaza.myapp.board.noticeBoard.NoticeBoardVO">
+	insert into noticeboard(noticenum, noticetype, subject, content, hit, regdate) 
+		values(noticeboardnum_sq.nextval, #{noticeType}, #{subject}, #{content}, #{hit}, sysdate)
+</insert>
+
+<delete id="deleteNotice">
+		delete from noticeboard where noticenum=#{noticeNum}
+</delete>
+
+<select id="selectNotice" resultType="kr.gaza.myapp.board.noticeBoard.NoticeBoardVO">
+	select noticenum, noticetype, subject, content, hit, regdate from noticeboard where noticenum=#{noticeNum}
+</select>
+
+<select id="selectReview" resultType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO">
+	select reviewnum, reviewtype, subject, content, writer, hit, regdate,ip from reviewboard where reviewnum=#{reviewNum}
+</select>
+<insert id="insertAlliance" parameterType="kr.gaza.myapp.eventPackage.AllianceVO">
+	insert into event(eventnum, eventname, eventthumbnail, eventimg, eventcontent, eventcompany, startdate, enddate, regdate) 
+		values(eventnum_sq.nextval, #{eventName}, #{eventThumbnail}, #{eventImg}, #{eventContent}, #{eventCompany}, #{startDate}, #{endDate}, sysdate)
+</insert>
+
+<delete id="deleteAlliance">
+		delete from event where eventnum=#{eventNum}
+</delete>
+</mapper>

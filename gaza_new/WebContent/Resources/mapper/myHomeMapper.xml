@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.gaza.myapp.myhome.MyHomeDAOInterface">
+	<select id="memberRecord" resultType="kr.gaza.myapp.myhome.MyHomeVO">
+		select membernamekor, membernameeng, flightcnt as memberflightcnt from member where membernum=#{membernum}
+	</select>
+	<select id="memberMiles" resultType="kr.gaza.myapp.myhome.MyHomeVO">
+		select sum(a.point)myMileage from miles a join mymiles b on a.milesnum = b.milesnum where b.membernum=#{membernum}
+	</select>
+	<select id="memberGrade" resultType="kr.gaza.myapp.myhome.MyHomeVO">
+		<![CDATA[ select gradetype as memberGrade from grade where needmiles = (select max(needmiles) needmiles from grade where needMiles<=#{mymileage})]]>
+	</select>
+	<select id="memberNeedMileage" resultType="kr.gaza.myapp.myhome.MyHomeVO">
+		<![CDATA[ select needmiles as needMileage from grade where needmiles = (select needmiles from grade where needMiles>=#{mymileage} and rownum=1)]]>
+	</select>
+	<select id="orderNumList" resultType="kr.gaza.myapp.myhome.MyHomeVO">
+		select ordernum from payment where membernum=#{memberNum} order by paydate desc
+	</select>
+	<select id="flightList" resultType="int">
+		select flightnum from orderedflight where ordernum=#{orderNum}
+	</select>
+	<select id="flightInfo" resultType="kr.gaza.myapp.myhome.MyHomeVO">
+		select airplanename, productnum, departtime, arrivetime from flight where flightnum=#{flightNum}
+	</select>
+	<select id="getOrderedNum" resultType="int">
+		select orderedFlightNum from orderedFlight where orderNum=#{orderNum}
+	</select>
+	<select id="DepAri" resultType="kr.gaza.myapp.myhome.MyHomeVO">
+		select depart, arrive from product where productnum=#{productNum}
+	</select>
+	<select id="departCity" resultType="kr.gaza.myapp.myhome.MyHomeVO">
+		select city as departCity from airport where IATA=#{depart}
+	</select>
+	<select id="arriveCity" resultType="kr.gaza.myapp.myhome.MyHomeVO">
+		select city as arriveCity from airport where IATA=#{arrive}
+	</select>
+	<select id="getReview0" resultType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO" parameterType="String">
+		select * from
+		(select reviewNum, reviewType, subject from reviewBoard where reviewType=0 and writer=#{value} order by reviewNum DESC)
+		<![CDATA[ 
+		where ROWNUM<=5
+		]]> 
+	</select>
+	<select id="getReview1" resultType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO" parameterType="String">
+		select * from
+		(select reviewNum, reviewType, subject from reviewBoard where reviewType=1 and writer=#{value} order by reviewNum DESC)
+		<![CDATA[ 
+		where ROWNUM<=5
+		]]> 
+	</select>
+	
+	
+</mapper>

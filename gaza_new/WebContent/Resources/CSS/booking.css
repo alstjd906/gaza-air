@@ -1,0 +1,1180 @@
+@charset "UTF-8";
+@import url("../CSS/layout.css") screen;
+
+/* ----------------------------------------------- */
+/* 여정 선택 booking1.html */
+/* ----------------------------------------------- */
+
+/* 공통 사용 Tags */
+
+.itinerary { margin: 20px 0 60px; }
+
+.itinerary>div,
+.itinerary>div>div { position: relative; }
+
+input[type="radio"]:hover + label { cursor: pointer; }
+
+/* 여행 / 날짜 선택 */
+
+.itinerary-select { display: inline-block; }
+.itinerary-select>input {
+    background-color: #eee;
+    border: 1px solid #eee;
+    width: 99%;
+    height: 98px;
+    font-size: 155%;
+    padding: 40px 22px 10px;
+}
+
+.itinerary-select:last-of-type>input { width: 100%; }
+
+.itinerary-select>label {
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    color: #737373;
+    cursor: text;
+}
+
+.itinerary-select>input:focus {
+    background-color: #fff;
+    border: 1px solid #36f;
+}
+
+.itinerary-select>input:focus>label { color: white; }
+
+.spot-change {
+    content: '';
+    display: block;
+    position: absolute;
+    border: none;
+    top: 30px;
+    right: -15px;
+    width: 35px;
+    height: 35px;
+    background: url(../IMG/icon/icon_point_change.png) no-repeat;
+    z-index: 200;
+    cursor: pointer;
+}
+
+
+.book-input-form,
+.book-input-form2 { margin-bottom: 10px; }
+
+.itinerary-select i.fas,
+.itinerary-select i.far { margin-right: 5px; }
+
+.txt-hint { height: 45px; }
+
+#multi-way-hint i {
+    width: 18px;
+    height: 18px;
+    vertical-align: 1px;
+    padding-top: 3px;
+    padding-left: 6px;
+    text-align: center;
+    font-size: 88%;
+}
+
+#multi-way-hint:hover i {
+    transform: rotate(375deg);
+    background-color:#36f;
+    color:#fff;
+}
+
+/* 다구간 팝업 */
+
+#multi-way-hint-window {
+    top: 70px;
+    width: 700px;
+    display: none;
+}
+
+.exam { margin: 5px 0 10px; }
+
+.route-info {
+    background-color: rgb(250, 250, 250);
+    margin-top: 10px;
+}
+
+.route-info>.inner {
+    padding: 20px;
+    text-align: center;
+    height: 85px;
+}
+
+.route-wrap {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.route {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    background:  url('../IMG/icon/bg_multi_route.png') center 0 no-repeat;
+}
+
+.route>.txt {
+    float: left;
+    width: 50%;
+    margin-top: 25px;
+    font-size: 13px;
+    line-height: 1.2;
+    text-align: center;
+    list-style: none;
+}
+
+.route.type2 {
+    width: 200px;
+    background: url('../IMG/icon/bg_multi_route2.png') center top no-repeat;
+}
+.route.type2>.txt { width: 25%; }
+
+.trv-arrow {
+    display: inline-block;
+    width: 25px;
+    background: url('../IMG/icon/ico_arrow_gray.png') 0 5px no-repeat;
+    height: 40px;
+    margin: 0 -10px;
+}
+
+/* 다구간 입력칸 추가 삭제 */
+#multi-way-btn-box { float: right; }
+
+.add,
+.subtr {
+    float: right;
+    margin-top: 10px;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    z-index: 100;
+}
+
+.add {
+    color: #36f;
+    background-color: #fff;
+    border: 1px solid #36f;
+}
+.add:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #36f;
+    border: 1px solid #36f;
+    transform: rotate(360deg);
+}
+
+.subtr {
+    background-color: #fff;
+    border: 1px solid #555;
+}
+.subtr:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #555;
+    border: 1px solid #555;
+    transform: rotate(360deg);
+}
+
+.add>i,
+.subtr>i { margin: 11px auto 0; }
+
+#note>p { text-align: center; }
+
+/* 공항선택 */
+
+.airport-picker .scrollable { border: 0; }
+
+
+/* 탑승 인원 선택 */
+
+.passenger-select { display: inline-block; }
+
+.passenger-select>p:first-of-type {
+    font-size: 130%;
+    margin-bottom: 20px;
+}
+
+.passenger-select>p:first-of-type>span {
+    font-size: 80%;
+    color: #888;
+}
+
+.passenger-select>input {
+    background-color: #eee;
+    height: 60px;
+    width: 99%;
+    border: 1px solid #eee;
+    font-size: 180%;
+    padding: 13px;
+    text-align: center;
+}
+
+.passenger-select:last-of-type>input { width: 100%; }
+.passenger-select>input:focus {
+    background-color: #fff;
+    border: 1px solid #36f;
+}
+
+.passenger-select>input:focus>label { color: white; }
+
+
+.minus,
+.plus {
+    background-color: transparent;
+    position: absolute;
+    top: 52px;
+    width: 40px;
+    height: 52px;
+    border: none;
+    font-size: 200%;
+    font-weight: 200;
+    color: #aaa;
+}
+.minus { left: 1%; }
+.plus { right: 2%; }
+.minus,
+.plus:hover { cursor: pointer; }
+
+.passenger-select:last-of-type>.plus { right: 1%; }
+
+.subtitle i {
+    font-size: 62%;
+    padding-top: 3px;
+}
+
+.subtitle>span:last-of-type { margin-left: 5px; }
+.subtitle>span:first-of-type { margin-left: -10px; }
+
+#ageCalc-btn-box { float: right; }
+
+#btn-ageCalc {
+    position: relative;
+    height: 34px;
+    padding: 7px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 80%;
+    background-color: #fff;
+    color: #555;
+    z-index: 100;
+    cursor: pointer;
+}
+
+#btn-ageCalc:hover { border: 1px solid #000; }
+
+#btn-ageCalc-window {
+    max-width: 600px;
+    padding: 40px;
+}
+
+.form-area1 {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#txtBirthDate {
+    width: 320px;
+    height: 44px;
+    padding: 0 15px;
+    margin-right: 10px;
+    border: 1px solid #eee;
+    background-color: #eee;
+    font-size: 100%;
+    line-height: 40px;
+}
+
+#txtBirthDate:focus,
+#txtBirthDate:hover {
+    background-color: #fff;
+    border: 1px solid #36f;
+}
+
+.form-area1>button {
+    width: 160px;
+    height: 46px;
+    margin-right: 10px;
+    font-size: 130%;
+    border-radius: 0;
+}
+
+#ageCalc-result { margin-top: -10px; }
+
+/* 좌석 등급 선택 */
+
+input[name="class-type"].radio2:checked + label { background-position: 35% 5px; }
+
+/* 조회 버튼 */
+
+.nextBtn {
+    margin: -20px 0 30px;
+    border-radius: 0;
+}
+
+
+/* ----------------------------------------------- */
+/* 항공편 선택 booking2.html */
+/* ----------------------------------------------- */
+
+/* 상단바 */
+.cur-route {
+    margin: 0;
+    background-color: #ddd;
+    padding: 15px;
+    width: 100%;
+    transition-duration: 0.3s;
+    z-index: 100;
+}
+
+.cur-route input {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: calc(100% - 2px);
+    font-size: 140%;
+}
+
+.cur-route>.book-input-form {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.cur-route .itinerary-select { max-width: calc(25% - 14px); }
+
+#num-of-passengers-window {
+    max-width: 1200px;
+    width: 1200px;
+}
+
+#num-of-passengers-window>.itinerary {
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+#num-of-passengers-window>.btn-area {
+    position: relative;
+    padding-top: 10px;
+    text-align: right;
+}
+
+#num-of-passengers-window>.btn-area>button {
+    height: 46px;
+    width: 250px;
+    font-size: 100%;
+}
+.cur-route .fa-redo-alt {
+    font-size: 170%;
+    line-height: 98px;
+    background-color: #36f;
+    margin-left: 3px;
+    padding: 0 10px;
+    color: #fff;
+    border-radius: 3px;
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.cur-route.sticky {
+    position: sticky;
+    top: 0;
+}
+
+.cur-route.sticky * { height: 50px !important; }
+.cur-route.sticky label { display: none; }
+.cur-route.sticky input { font-size: 120%; padding: 20px; }
+.cur-route.sticky .col-fourth:after {
+    font-family: fontawesome;
+    font-size: 120%;
+    text-align: center;
+    position: absolute;
+    top: 14px;
+    right: 10px;
+}
+.cur-route.sticky .col-fourth:first-of-type:after,
+.cur-route.sticky .col-fourth:nth-of-type(2):after { content: "\f3c5"; }
+.cur-route.sticky .col-fourth:nth-of-type(3):after { content: "\f073"; }
+.cur-route.sticky .col-fourth:nth-of-type(4):after { content: "\f007"; }
+.cur-route.sticky .fa-redo-alt { line-height: 50px; }
+.sticky>.book-input-form>.itinerary-select>input { padding-left: 10px; }
+
+/* 다구간 상단바 */
+.cur-route:hover>.multi-way-row { display: none; }
+.cur-route>.multi-way-row ~ div { display: none; margin-top: 10px; }
+.cur-route>.multi-way-row + div { margin-top: 0; }
+.cur-route:hover>.multi-way-row ~ div { display: flex; }
+
+/* 여정 */
+
+.journey-wrapper { margin-bottom: 70px; }
+
+.journey-name {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    font-size: 130%;
+    text-align: center;
+}
+
+.journey-name>div {
+    font-size: 180%;
+    padding: 40px;
+}
+
+.journey-name span:first-of-type { margin-right: 30px; }
+.journey-name span:last-of-type { margin-left: 20px; }
+.journey-name span>span {
+    font-size: 60%;
+    color: #888;
+    margin-left: 10px;
+}
+
+.journey-name>div>span:first-of-type:after {
+    content: "";
+    position: absolute;
+    border: 2px solid #555;
+    border-bottom: 0;
+    border-left: 0;
+    width: 14px;
+    height: 14px;
+    margin-top: 23px;
+    transform: rotate(45deg);
+}
+
+.journey-name-fixed {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    padding: 8px 20px;
+    background-color: #fff;
+    width: 100vw;
+    z-index: 90;
+}
+
+.journey-name-fixed>div { width: 1200px; margin: 0 auto;}
+
+.journey-name-fixed>div>span:first-of-type { margin: 0 20px 0 10px;}
+.journey-name-fixed>div>span:nth-of-type(2) { margin-right: 25px; }
+.journey-name-fixed>div>span:last-of-type { margin-left: 20px;}
+.journey-name-fixed>div>span:nth-of-type(2):after {
+    content: "";
+    position: absolute;
+    border: 2px solid #555;
+    border-bottom: 0;
+    border-left: 0;
+    width: 6px;
+    height: 6px;
+    margin-top: 10px;
+    margin-left: 15px;
+    transform: rotate(45deg);
+}
+
+.journey-name-fixed>div>span>span {
+    margin-left: 5px;
+    font-size: 80%;
+    color: #888;
+}
+
+/* 비행기 티켓 표 */
+
+.ticket-table-wrapper { max-height: 612px; }
+
+.price-compare {
+    height: 120px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #555;
+}
+
+.price-compare>* {
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.price-compare>.buttons {
+    width: 50px;
+    background-color: #fff;
+    font-size: 200%;
+}
+
+.price-compare>.buttons {
+    content: "";
+    position: absolute;
+    border: 2px solid #555;
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    margin-top: 58px;
+    margin-left: 15px;
+    transform: rotate(45deg);
+}
+
+.price-compare>.btn-price-last-week {
+    border-top: 0;
+    border-right: 0;
+    margin-left: -40px;
+}
+.price-compare>.btn-price-next-week {
+    margin-left: 20px;
+    border-bottom: 0;
+    border-left: 0;
+}
+
+.price-compare>.price-of-day {
+    height: 110px;
+    width: 12%;
+    vertical-align: bottom;
+    transition-duration: 0.3s;
+}
+.price-compare>.price-of-day:first-child { margin-left: 0; }
+
+.price-of-day>label { cursor: pointer; margin-top: 21px; width: 100%}
+.price-of-day div { background-color: #eee; }
+.price-of-day div:first-child { padding-top: 40px; }
+.price-of-day div:last-child { padding-bottom: 10px; }
+
+.price-of-day.on {
+    background-color: #fff;
+    border-color: #36f;
+    border-bottom-color: #eee;
+}
+
+.price-of-day.on:before {
+    content: "";
+    position: absolute;
+    border: 2px solid #36f;
+    border-top: 0;
+    border-left: 0;
+    width: 10px;
+    height: 22px;
+    margin-top: 15px;
+    margin-left: -6px;
+    transform: rotate(45deg);
+}
+
+.price-of-day>input[type=radio]:checked + label:before {
+    content: "";
+    position: absolute;
+    border: 2px solid #36f;
+    border-top: 0;
+    border-left: 0;
+    width: 8px;
+    height: 18px;
+    margin-top: 11px;
+    margin-left: -6px;
+    transform: rotate(45deg);
+}
+.price-of-day>input[type=radio]:checked + label>div {
+    background-color: #fff;
+    border-left: 1px solid #555;
+    border-right: 1px solid #555;
+}
+.price-of-day>input[type=radio]:checked + label>div:first-of-type { border-top: 1px solid #555; }
+.price>span { font-size: 80%; }
+.sort-div { height: 50px; }
+
+.sort-div li {
+    float: left;
+    margin: 14px 10px 12px 10px;
+    padding-right: 20px;
+    list-style-type: none;
+    font-size: 0.8em;
+    border-right: 1px solid #ddd;
+    transition: color 0.5s ease-in-out;
+}
+.sort-div li:first-child { margin-left: 10px; }
+.sort-div li:last-child { border: none; }
+
+.sort-div input[type=radio] { display: none; }
+.sort-div input[type=radio]:checked + label { color: #36f; }
+
+.flight-table-title {
+    color: #fff;
+    line-height: 50px;
+    position: sticky;
+    top:0;
+    z-index: 80;
+    text-align: center;
+}
+.flight-table-title>div:first-child { background-color: #999;}
+.flight-table-title>div:not(:first-child) { border-left: 1px solid #ddd; }
+
+.flight-table-title>div:nth-child(2) { background-color: #9bf; }
+.flight-table-title>div:nth-child(3) { background-color: #69f; }
+.flight-table-title>div:last-child { background-color: #36f; }
+
+
+.flight-ticket-table-wrapper {
+    max-height: 600px;
+    overflow-y: overlay;
+    position: relative;
+}
+
+.flight-ticket-table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.flight-ticket-table tr { border-bottom: 1px solid #ddd; }
+
+.flight-ticket-table th {
+    height: 50px;
+    color: #fff;
+}
+
+.flight-ticket-table td { height: 100px; }
+.flight-ticket-table tr>td:nth-child(2)>div { font-size: 90%; }
+
+.flight-ticket-table .fa-clock { margin: 0 10px 15px 0; }
+
+.flight-ticket-table col.ticket-wrapper {
+    width: 20%;
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+}
+.flight-ticket-table .radio3 + label { margin-top: -10px; }
+.flight-ticket-table .radio3 + label + div { margin-top: 15px; }
+
+.currency { font-size: 70%; }
+.empty-seats {
+    font-size: 70%;
+    color: #36f;
+}
+.flight-ticket-table .selected-ticket * { color: #fff !important; }
+
+.price-div {
+    font-size: 120%;
+    color: #fff;
+    font-weight: 500;
+    line-height: 50px;
+    height: 50px !important;
+}
+
+.price-div>div:first-of-type>div:last-of-type { text-align: left; }
+.price-div>div:last-of-type {
+    text-align: right;
+    padding-right: 30px;
+}
+.price-div span:not(.people-type){ margin-right: 20px; }
+.price-div .people-type {
+    font-size: 80%;
+    margin-right: 10px;
+    vertical-align: 2px;
+}
+
+.sort-div input.checked:checked + label:after {
+    content: "";
+    position: absolute;
+    border-right: 3px solid #ddd;
+    border-bottom: 3px solid #ddd;
+    height: 10px;
+    width: 10px;
+    margin-left: 4px;
+    margin-top: 3px;
+    box-sizing: border-box;
+    transform: rotate(45deg);
+}
+
+.sort-div input.checked.reverse-order:checked + label:after {
+    transform: rotate(225deg);
+    margin-top: 6px;
+}
+
+.next-day {
+    position: absolute;
+    margin-top: 23px;
+    margin-left: 30px;
+    font-size: 60%;
+}
+
+/* ----------------------------------------------- */
+/* 탑승자/예약자 정보입력 booking3.html */
+/* ----------------------------------------------- */
+
+.pregnant-hint {
+    font-size: 100% !important;
+    padding-top: 4px !important;
+    text-indent: 0;
+    vertical-align: 0 !important;
+}
+
+.gender-wrapper {
+    height: 78px;
+    padding-top: 25px !important;
+}
+
+.gender-wrapper>label:first-of-type { margin: 0 30px; }
+
+#membership-hint>i {
+    color: #fff;
+    background-color: #67a;
+    border-color: #fff;
+    width: 17px;
+    height: 17px;
+    margin-left: 0;
+    padding: 2px 5px;
+}
+
+
+.receive-type-wrapper {
+    height: 78px;
+    padding-top: 30px !important;
+}
+
+.receive-type-wrapper>label:first-of-type { margin-right: 30px; }
+
+
+/* 국제번호선택 */
+#phone {
+    height: 46px;
+    width: 297px;
+    margin-right: 10px;
+    border: 1px solid #f3f3f3;
+    border-bottom: 1px solid #ddd;
+    background-color: #f3f3f3;
+    border-radius: 0 !important;
+    line-height: 40px;
+    font-size: 100%;
+    color: #555;
+    padding-left: 70px;
+}
+#phone:hover {
+    border:1px solid #36f;
+    background-color: #fff;
+}
+
+.iti__selected-flag { padding-left: 18px !important; }
+
+
+/* ----------------------------------------------- */
+/* 운임확인 및 최종동의 booking4.html */
+/* ----------------------------------------------- */
+
+.flight-confirm-section-title {
+    color: #333;
+    font-size: 140%;
+    font-weight: 600;
+    margin: 100px 5px 20px;
+}
+
+.trip-table { text-align: center; }
+.trip-table>div:first-of-type>div { min-height: 0; }
+.trip-table>div:not(.table-row-title)>div{ padding: 25px 15px; min-height: 155px; }
+.trip-table>div.table-row-title>div{ padding: 15px; }
+.trip-table>.row:not(:first-of-type) {border-bottom: 1px solid #ccc; }
+.trip-num>div:first-of-type {
+    font-size: 120%;
+    margin-top: 25px;
+}
+.trip-airline>div,
+.trip-type>div { margin-top: 35px; }
+.trip-detail>div>div:first-of-type {
+    margin-top: 13px;
+    font-size: 110%;
+}
+
+.flight-detail {
+    position: relative;
+}
+.flight-detail>span:first-of-type {
+    position: absolute;
+    top: 23px;
+    left: 55px;
+    font-size: 80%;
+    color: #888;
+}
+.flight-detail>span:last-of-type {
+    position: absolute;
+    bottom: 19px;
+    left: 80px;
+    font-size: 80%;
+    color: #888;
+}
+
+.flight-detail>img {
+    margin: 10px 0 0 15px;
+    width: 160px;
+}
+
+.O {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 4px solid #36f;
+    margin: 17px auto 29px;
+}
+
+.X:before {
+    content: '\D7';
+    position: relative;
+    font-size: 60px;
+    color: #ff4500;
+    font-weight: 400;
+}
+.X { margin-top: -14px; }
+
+
+/*  가격 표(결제 bag부분 가져다씀) */
+.flight-confirm-section .total-price>div>div:last-of-type { float: right; }
+.flight-confirm-section .total-price>div>div:before { display: none; }
+.flight-confirm-section ul>li>a { color: #8b4513; }
+
+/* 규정 */
+div[id^=regulation] {
+    background-color: #f3f3f3;
+    padding: 50px 50px 50px 34px;
+    margin-top: 20px;
+}
+div[id^=regulation]>p {
+    font-size: 150%;
+    margin-bottom: 20px;
+}
+div[id^=regulation]>p>span {
+    font-size: 90%;
+    margin-right: 10px;
+}
+div[id^=regulation]>p>span:last-of-type { margin-left: 10px; }
+
+div[id^=regulation]>div>h4 {
+    font-size: 120%;
+    margin: 15px 0;
+}
+div[id^=regulation]>div>div { margin-left: 16px; }
+div[id^=regulation]>div { margin-left: 10px; }
+
+.list-type4 { margin-top: 0; }
+input[type="checkbox"].checkbox1 + label:before { margin-right: 30px; }
+
+div[id^=regulation]>input[type=checkbox]:checked ~ div {
+    max-height: 140px;
+    overflow-y: scroll;
+}
+div[id^=regulation]>input[type=checkbox] + label {
+    float: right;
+    margin-top: -45px;
+    cursor: pointer;
+    position: sticky;
+    top: 300px;
+    transform: rotate(180deg);
+    transition: transform 0.2s;
+}
+div[id^=regulation]>input[type=checkbox]:checked + label {
+    transform: none;
+    position: static;
+}
+
+
+/* ----------------------------------------------- */
+/* 결제 payment.html */
+/* ----------------------------------------------- */
+
+/* ticket, price  info */
+
+.bag,
+.payment-section {
+    border-top: 3px solid #777;
+    padding: 50px 0 40px;
+    margin-top: 30px;
+}
+#payment-method-mileage>.row { margin-bottom: 20px; }
+
+.bag-head {
+    color: #333;
+    font-size: 110%;
+    margin-bottom: 20px;
+}
+
+.currency { font-size: 60%; }
+
+.trip{ padding: 0 50px; }
+.trip>div:first-of-type {
+    text-align: left;
+    margin-left: -20px;
+    line-height: 184px;
+}
+
+.airport-name,
+.flight-date,
+.flight-time { text-align: center; }
+
+.airport-name {
+    font-size: 150%;
+    margin-top: 55px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.flight-date {
+    font-size: 90%;
+    margin-top: 10px;
+}
+
+.flight-image {
+    margin-top: 65px;
+    text-align: center;
+}
+
+.detailed-price>div {
+    border-bottom: 1px solid rgba(230, 230, 230, 0.7);
+    padding: 7px 7px 7px 15px;
+    font-size: 90%;
+}
+.detailed-price>div:last-of-type { border-bottom-color: transparent; }
+.detailed-price:not(:last-of-type) { background-color: #f7f7f7; }
+
+.total-price {
+    height: 100px;
+    line-height: 100px;
+    padding: 0 50px;
+    margin: 30px 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    background-color: #f7f7f7;
+}
+.total-price.bigger-text { font-size: 150%; }
+.total-price span {
+    margin-left: 10px;
+    font-size: 150%;
+}
+.total-price>div>div:not(:last-of-type):before {
+    position: relative;
+    left: -60px;
+    font-family: FontAwesome;
+}
+.total-price>div>div:last-of-type:before {
+    content: "";
+    position: absolute;
+    width: 17px;
+    height: 4px;
+    border-top: 3px solid #555;
+    border-bottom: 3px solid #555;
+    margin-left: -59px;
+    margin-top: 49px;
+}
+
+.total-price>div>div:nth-of-type(2):before,
+.total-price>div>div:nth-of-type(3):before { content: '\f068'; }
+
+
+/* 결제 */
+
+.section-title {
+    font-size: 140%;
+    margin-bottom: 40px;
+    padding-left: 8%;
+}
+
+.payment-section:first-of-type>p { text-align: center; }
+
+.payment-method {
+    padding-top: 30px;
+    margin-top: 50px;
+}
+
+.payment-method-title {
+    text-align: center;
+    line-height: 100px;
+}
+
+.payment-type>div {
+    padding: 0 30px;
+    text-align: center;
+}
+
+.payment-type label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    padding: 15px 0 5px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.payment-type label:hover { background-color: #f3f3f3; }
+.payment-type input[name=payment-method]:checked + label { border-color: #36f; }
+.payment-type input[name=payment-method] + label>img:last-of-type { display: none; }
+.payment-type input[name=payment-method]:checked + label>img:last-of-type { display: inline-block; }
+.payment-type input[name=payment-method]:checked + label>img:first-of-type { display: none; }
+
+
+
+/* 결제정보입력 */
+
+form[id^="payment-method-"]>.row { margin-bottom: 20px; }
+form[id^="payment-method-"]>ul { margin: 60px 30px; }
+
+.payment-row-title { text-align: center; }
+
+.payment-row-title + div>input[type=number],
+.payment-row-title + div>input[type=password],
+.payment-row-title + div>input[type=text],
+.payment-row-title + div>select {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #aaa;
+    border-radius: 0;
+    padding: 5px;
+    min-width: 200px;
+}
+.payment-row-title + div>select {
+    font-size: 90%;
+    padding: 10px;
+}
+
+/* 마일리지 */
+
+.payment-row-title + div>input + span {
+    margin-left: 10px;
+    font-size: 70%;
+    color: #888;
+}
+
+#coupon {
+    border-radius: 0;
+    width: 80px;
+    height: 25px;
+    margin-left: 10px;
+}
+
+/* 사이드 바 */
+
+.payment-sidebar {
+    margin-top: 30px;
+    position: sticky;
+    top: 100px;
+}
+
+.payment-sidebar>div {
+    margin-left: 20px;
+    padding: 30px 10px 10px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+}
+
+.payment-sidebar>div>p:first-of-type {
+    font-size: 120%;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.payment-sidebar>div p + div>div:last-of-type { text-align: right; }
+
+.payment-sidebar>div>div {
+    color: #888;
+    font-size: 90%;
+    padding-bottom: 20px;
+}
+
+.payment-sidebar>div>div:first-of-type { border-bottom: 1px solid #ddd; }
+
+.total {
+    text-align: right;
+    padding: 20px 0;
+}
+.total>div:first-of-type { font-size: 80%; }
+.total #total-pay { font-size: 150%; }
+
+.payment-sidebar>div>div:last-of-type {
+    background-color: #f3f3f3;
+    padding: 15px;
+    font-size: 85%;
+}
+
+.payment-sidebar>div>div:last-of-type>div:first-of-type {
+    font-size: 130%;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.agree-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#btn-pay {
+    width: 100%;
+    height: 50px;
+    border-radius: 0;
+    margin: 20px 0 10px;
+    font-size: 130%;
+}
+
+/* 결제완료창 */
+
+.payment-complete-section {
+    margin: 70px auto 40px;
+    width: 800px;
+}
+
+.price-table>div {
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+.price-table>div:first-of-type {
+    background-color: #f3f3f3;
+    border-top: 1px solid #ddd;
+    color: #333;
+    font-size: 115%;
+}
+
+.price-table>div>div {
+    padding: 25px;
+    border-left: 1px solid #ddd;
+    text-align: center;
+}
+.price-table>div>div:first-of-type { border-left: 0; }
+
+.price-table>div:not(:first-of-type)>div:not(:first-of-type):before {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #ddd;
+    border: 1px solid #ddd;
+    color: #fff;
+    margin-left: -103px;
+    line-height: 28px;
+    font-size: 140%;
+    content: "ㅡ";
+}
+.price-table>div:not(:first-of-type)>div:last-of-type:before {
+    content: "=";
+    margin-left: -79px;
+    font-size: 170%;
+}
+
+.payment-complete-section>p {
+    margin-bottom: 15px;
+    font-size: 130%;
+    color: #333;
+}
+
+.payment-complete-table>div>div {
+    padding: 15px;
+}
+.payment-complete-table>div>div:first-of-type {
+    background-color: #f3f3f3;
+    border: 1px solid #f3f3f3;
+    font-size: 110%;
+}
+.payment-complete-table>div { border-top: 1px solid #ddd; }
+.payment-complete-table>div:last-of-type { border-bottom: 1px solid #ddd; }
+
+.button-wrapper { text-align: center; }
+.button-wrapper>a>input[type=button] {
+    width: 100px;
+    height: 40px;
+    border-radius: 0;
+    font-size: 90%;
+    margin-right: 20px;
+}
+
+.button-wrapper>a>input[type=button]:last-of-type { margin-right: 0; }

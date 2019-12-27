@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.gaza.myapp.board.noticeBoard.NoticeBoardInterface">
+	<select id="noticeBoardTotalRecord" parameterType="int" resultType="int">
+		select count(noticeNum) from noticeBoard 
+		<if test="value!=0">
+			where noticeType=#{value}
+		</if>
+	</select>
+	
+	<select id="getAllRecord" resultType="kr.gaza.myapp.board.noticeBoard.NoticeBoardVO">
+			select noticeNum, noticeType, subject, content, hit, to_char(regDate, 'YYYY.MM.DD') regDate from noticeBoard 
+			<if test="param1!=0">
+				where noticeType=#{param1}
+			</if>
+	</select>
+	
+	<select id="noticeBoardSelect" parameterType="kr.gaza.myapp.board.noticeBoard.NoticeBoardVO" resultType="kr.gaza.myapp.board.noticeBoard.NoticeBoardVO">
+			select noticeNum, noticeType, subject, content, hit, to_char(regDate, 'YYYY.MM.DD') regDate from noticeBoard where noticeNum=#{noticeNum}
+	</select>
+	
+	<select id="noticeBoardGetPrevNext" parameterType="int" resultType="kr.gaza.myapp.board.noticeBoard.NoticeBoardVO">
+			select * from(
+				SELECT 
+				noticeNum, subject, 
+				lag(noticeNum, 1) over (order by noticeNum) prevNum, 
+				lag(subject, 1, '이전 글이 없습니다.') over (order by noticeNum) prevSubject, 
+				lead(noticeNum, 1) over (order by noticeNum) nextNum, 
+				lead(subject, 1, '다음 글이 없습니다.') over (order by noticeNum) nextSubject 
+				from noticeBoard
+				<if test="param1!=0">
+					where noticeType=#{param1}
+				</if>
+			)
+			where noticeNum=#{param2}
+	</select>
+	<update id="noticeHitUpdate" parameterType="int">
+			update noticeBoard set hit= hit+1 where noticeNum=#{param1}
+	</update>
+</mapper>

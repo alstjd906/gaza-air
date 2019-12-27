@@ -1,0 +1,602 @@
+@charset "UTF-8";
+@import "layout.css";
+
+section {
+	width:100%;
+	padding: 30px 0;
+}
+#main{
+	height: calc(100vh - 70px);
+}
+#event{
+	background-color: #eee;
+}
+ul, li{
+	list-style-type:none;
+}
+.contents {
+	width: 100%;
+}
+.sectionTitle{
+	width:1200px;
+	height:50px;
+	margin: 20px auto;
+}
+.sectionTitle p{
+	font-size:200%;
+	float:left;
+	margin-right:20px;
+}
+.sectionTitle>a{
+	line-height:4;
+	background-color: #35f;
+	color:#fff;
+    padding-bottom: 1px;
+}
+.sectionTitle a:hover{
+	text-decoration: underLine;
+}
+
+/*section main---------------------------------------------------------*/
+.reserve_wrap{
+	width: 1000px;
+	height: 160px;
+	background-color: #fff;
+	box-shadow : 5px 5px 5px rgba(51,51,51,0.7);
+	position:absolute;
+	left: 50%;
+	transform:translateX(-50%);
+	bottom: 12vh;
+    opacity: 0.8;
+    transition: all 0.5s;
+}
+
+.reserve_wrap.active {
+    opacity: 1;
+    bottom: 25vh;
+}
+
+input:checked + label>.reserve_wrap {
+    opacity: 1;
+    bottom: 25vh;
+}
+
+.reserve_wrap>div:nth-child(1), .reserve_wrap>div:nth-child(2){
+	width:25%;
+}
+.reserve_wrap>div:nth-child(3){
+	width:35%;
+}
+.reserve_wrap>div:nth-child(4){
+	width:15%;
+}
+.reserveBox{
+	height: 160px;
+	border: 1px solid white;
+	float: left;
+	color: #555;
+	text-align: center;
+	position: relative;
+}
+.reserveBox>div:first-child{
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+}
+/*출발지, 도착지 선택--------------*/
+.tripLoc{
+	font-size: 200%;
+	width: 100%;
+	height: 80px;
+	text-align:center;
+	background-color: rgba(255,255,255,0);
+	border: none;
+	background : url('../IMG/icon/marker_black.png') no-repeat;
+	background-size : 8%;
+	background-position: 90% 50%;
+	cursor: pointer;
+	opacity: 1;
+	position:absolute;
+	top: 10px;
+	left: 0;
+}
+.reserveBox input:hover::placeholder{
+	color: #36f;
+}
+.tripLoc::placeholder{
+	color: #555;
+}
+.locText>i{
+	font-size: 270%;
+	color: #36f;
+}
+.locText>div{
+	position: relative;
+	top: -50px;
+	height: 15px;
+}
+.dialogOpen{
+	height: 82px;
+	font-size:230%;
+	line-height: 82px;
+}
+.tripDate{
+	height: 62px;
+	font-size:130%;
+	line-height: 62px;
+}
+.flightDate{
+	border: none;
+	text-align: center;
+	cursor: pointer;
+}
+.reserveBox:last-child img{
+	position: absolute;
+	top:60px;
+	left:-415%;
+	width: 40px;
+	visibility: hidden;
+	cursor: pointer;
+}
+#waySelect>div>label{
+	transition: none;
+}
+/*출발날짜도착날짜 달력-------------*/
+.tripDate>input{
+	width: 100%;
+	height: 60px;
+	border: none;
+	text-align: center;
+	cursor: pointer;
+	color: #555;
+	font-size: 110%;
+}
+.tripDate>input::placeholder{
+	font-size: 80%;
+	text-align: center;
+}
+.lightpick { width: 58% !important; }
+.lightpick__toolbar { 
+    padding: 20px 0 0; 
+    border-bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+.lightpick__previous-action{
+	left: 0 !important;
+}
+.lightpick__previous-action,
+.lightpick__next-action { 
+	top: 200px; 
+}
+
+.lightpick__previous-action { 
+    position: absolute; 
+    left: 25px; 
+    top: 234px
+}
+/*.lightpick__reset-action { top: 35px; }*/
+
+#cal_status {
+    color: white;
+}
+
+.lightpick__day-of-the-week {
+    font-size: 130% !important;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.lightpick__month-title-bar * {
+    margin: 10px 0 10px 10px !important;
+    font-size: 120% !important;
+}
+
+.lightpick__month-title { padding-top: 18px !important; }
+
+.lightpick__day.is-today { background-size: 15px !important; }
+
+/*구간 선택---------------------*/
+#classSelect{
+	width: 80%;
+	height: 50px !important;
+	line-height: 80px;
+	margin: 15px auto 0 auto;
+}
+.radioLabel{
+	cursor: pointer;
+}
+.simple_reservation_submit{
+	width:100px;
+	height:100px;
+	background-color: #36f;
+	border:none;
+	border-radius: 10px;
+	font-size: 150%;
+	color: white;
+	margin-top:30px;
+	cursor: pointer;
+}
+.simple_reservation_submit:hover{
+	background-color: #4477ff;
+}
+
+/*탑승객선택*/
+#num-of-passengers-window {
+    max-width: 1200px;
+    width: 1200px;
+}
+
+#num-of-passengers-window>.itinerary {
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+#num-of-passengers-window>.btn-area {
+    position: relative;
+    padding-top: 10px;
+    text-align: right;
+}
+#passengerWrap{
+	width : 80%;
+	height: 80px;
+	line-height: 80px;
+	margin: 0 auto;
+}
+#num-of-passengers{
+	width: 100%;
+	height: 50px;
+	background : url('../IMG/icon/user.png') no-repeat 90% 50%;
+	background-size : 8%;
+	border-radius : 5px;
+	border : 1px solid #ddd;
+	opacity : 0.8;
+	cursor : pointer;
+	padding-left: 10px;
+    font-size: 110%;
+}
+
+#selectBtn {
+    height: 46px;
+    width: 250px;
+    font-size: 100%;
+}
+
+.passenger-select { display: inline-block; }
+
+.passenger-select>p:first-of-type {
+    font-size: 130%;
+    margin-bottom: 20px;
+}
+
+.passenger-select>p:first-of-type>span {
+    font-size: 80%;
+    color: #888;
+}
+
+.passenger-select>input {
+    background-color: #eee;
+    height: 60px;
+    width: 99%;
+    border: 1px solid #eee;
+    font-size: 180%;
+    padding: 13px;
+    text-align: center;
+}
+
+.passenger-select:last-of-type>input { width: 100%; }
+.passenger-select>input:focus {
+    background-color: #fff;
+    border: 1px solid #36f;
+}
+
+.passenger-select>input:focus>label { color: white; }
+
+
+.minus,
+.plus {
+    background-color: transparent;
+    position: absolute;
+    margin-top: 1px;
+    width: 40px;
+    height: 52px;
+    border: none;
+    font-size: 200%;
+    font-weight: 200;
+    color: #aaa;
+}
+
+.minus { margin-left: 3px }
+
+.plus { margin-left: -39px; }
+
+.minus,
+.plus:hover { cursor: pointer; }
+
+.btn-close{
+	position: absolute;
+	top: 35px;
+	right: 30px;
+}
+/*클래스 선택 */
+#waySelect {
+	position : absolute;
+	top: -51px;
+	left: -851px;
+	width: 190%;
+}
+#waySelect>div:first-child>label{
+	border-bottom-left-radius : 0px !important;
+}
+#waySelect>div:last-child>label{
+	border-bottom-right-radius : 0px !important;
+}
+/*배경이미지 컨트롤러*/
+.slideControler{
+	position:absolute !important;
+	left: 50%;
+	transform:translateX(-50%);
+	height: 20px;
+	background-color: rgba(255,255,255,.7);
+	margin: 0 auto;
+	border-radius:10px;
+	padding-top : 3px;
+	padding-left : 5px;
+	bottom: 5vh;
+    opacity: 0.8;
+}
+.dotsWrap{
+	height: 15px;
+	width:167px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.slideControler img{
+	width:15px;
+	position: relative;
+	top:-15px;
+	margin:0 1px;
+	cursor: pointer;
+	opacity: 0.8;
+}
+.playState{
+	position:relative;
+	width:15px;
+	float:right;
+	top : 12px;
+	left:-10px;
+}
+/*section best-------------------------------------------------------------------------*/
+#bestBanner{
+	display: flex;
+	justify-content: space-between;
+}
+#bestBannerWrap{
+	width: 1200px;
+	height: 370px;
+	margin: 0 auto;
+}
+#bestBannerWrap a{
+	color: #555;
+	text-decoration: none;
+}
+.imgFrame{
+	width : 250px;
+	height : 170px;
+	overflow : hidden;
+}
+.imgFrame>img{
+	height: 170px;
+}
+#bestBannerWrap a:hover img{
+	transform: scale(1.1);
+	-webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+#bestBannerWrap a:hover .textBox{
+	background-color: #eee;
+	-webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+#bestBannerWrap li{
+	float: left;
+}
+.imgTag{
+	width: 50px;
+	height: 50px;
+	position: relative;
+	background-color: #35f;
+	color: #fff;
+	text-align: center;
+	line-height: 50px;
+	top: -25px;
+	left: 15px;
+	font-size: 90%;
+	z-index: 500;
+}
+.textBox{
+	width: 250px;
+	height: 200px;
+	position: absolute;
+}
+.textBox h5{
+	margin-top: 30px;
+	font-size: 115%;
+	font-weight: bold;
+}
+.textBox>div{
+	width: 85%;
+	margin: 30px auto 0 auto;
+	margin-top: 30px;
+	height: 170px;
+}
+.textBox>div>div{
+	font-size: 90%;
+	height: 90px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 10px;
+}
+.textBox h6{
+	text-align: right;
+}
+/*section event-------------------------------------------------------------------------*/
+.eventBannerWrap{
+	width: 1200px;
+	margin: 0 auto;
+}
+.bx-wrapper{
+	border: none !important;
+	box-shadow: none !important;
+	background-color: rgba(0,0,0,0) !important;
+}
+.bx-wrapper li{
+	cursor: pointer;
+}
+.bx-wrapper li:hover>.bx-caption{
+	top: 0;
+}
+.bx-wrapper li:hover .eventDetail{
+	top: 0;
+}
+.bx-wrapper li:hover span{
+	opacity:0;
+}
+.bx-caption{
+	height:100%;
+	top: 200px;
+	-webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    text-align: center;
+    background-color: rgba(0,0,0,0.65) !important;
+}
+.bx-prev,
+.bx-next {
+    background-color: rgba(0,0,0,0.65) !important;
+    border-radius: 50%;
+    background-image: none !important;
+}
+
+.bx-prev:after,
+.bx-next:after {
+    position: absolute;
+    content: "";
+    height: 9px;
+    width: 9px;
+    top: 10px;
+    color: #fff;
+    transform: rotate(45deg);
+}
+.bx-prev:after {
+    left: 12px;
+    border-left: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+}
+.bx-next:after {
+    left: 7px;
+    border-right: 4px solid #fff;
+    border-top: 4px solid #fff;
+}
+.eventDetail{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	font-size: 80%;
+	color: #fff;
+	z-index: 9999;
+	top: 220px;
+	-webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+.eventDetail>p{
+	margin: 0;
+	text-align: center !important;
+	font-size: 170% !important;
+	padding: 15px 50px;
+}
+.eventDetail>p:first-child{
+	margin-top: 25px;
+}
+.eventDetail>div{
+	border: 1px solid #fff;
+	text-align:center;
+	font-size: 120%;
+	width: 80px;
+	height: 30px;
+	margin: 0 auto;
+	line-height: 30px;
+}
+/*section info-------------------------------------------------------------------------*/
+#infoWrap{
+	width:1200px;
+	height: 320px;
+	margin: 0 auto;
+	padding-top: 60px;
+}
+#infoWrap table{
+	width: 100%;
+}
+#infoWrap thead{
+	color: #555;
+	font-size: 200%;
+}
+#infoWrap thead td{
+	height: 60px;
+}
+#infoWrap thead td:nth-child(2){
+	text-align: center;
+    padding-left: 10px;
+}
+#infoWrap tbody>tr>td:nth-child(2){
+	text-align: center;
+}
+#infoWrap thead a{
+	color: white;
+}
+#infoWrap tbody a{
+	color: #555;
+	width: 400px;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#infoWrap tr{
+	height: 40px;
+}
+#infoWrap tbody a:hover{
+	color : #36f;
+}
+#infoWrap img:hover{
+	background-color : #eee;
+}
+#notice{
+	width:550px;
+	margin-right:100px;
+	float:left;
+	padding: 20px;
+	border: 1px solid #ddd;
+}
+#review{
+	width:550px;
+	float:left;
+	padding: 20px;
+	border: 1px solid #ddd;
+}
+.boardTag{
+	width: 40px;
+	height: 25px;
+	font-size: 90%;
+	color: #fff;
+	border-radius: 5px;
+	text-align: center;
+	float:left;
+	line-height: 25px;
+	margin-right: 10px;
+}
+.bt_best{
+	background-color: #36f;
+}
+.bt_new{
+	background-color: #3c6;
+}

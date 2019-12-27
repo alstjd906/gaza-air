@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<header id="header">
+	<nav>
+		<div id="mainMenu">
+			<ul>
+				<li>
+					<div>
+                        <a href="<%=path %>/">
+						    <img src="<%=img%>/logo/logo_basic.png"/>
+					    </a>
+					</div>
+					<div><a href="<%=jsp%>/flight/booking/booking1">항공권예매</a></div>
+					<div><a href="<%=jsp%>/eventNpackage/best_package">상품페이지</a></div>
+					<div><a href="<%=jsp%>/serviceinfo/reservation?abc=0&zyx=0">서비스안내</a></div>
+					<div><a href="<%=jsp%>/board/noticeBoard/noticeBoard_list?pageNum=1&tabType=0">고객서비스</a></div>
+					<div>
+                        <c:if test="${memberName==null }">
+                            <a href="<%=jsp %>/account/login/loginView">로그인</a>
+                        </c:if>
+                        <c:if test="${memberName!=null }">
+                            <a href="<%=jsp %>/mypage/myhome">마이홈</a>
+                        </c:if>
+					</div>
+					<div id="navBar"></div>
+					<ul id="subMenuWrap">
+						<li id="subMenu">
+							<ul>
+								<li><img src="<%=img%>/main/nav_flight.jpg"/></li>
+							</ul>
+							<ul>
+								<li><a href="<%=jsp%>/flight/booking/booking1">항공권예약</a></li>
+								<li><a href="<%=jsp %>/flight/schedule/routeMap">운항노선도</a></li>
+							</ul>
+							<ul>
+								<li><a href="<%=jsp%>/eventNpackage/best_package">베스트상품</a></li>
+								<li><a href="<%=jsp%>/eventNpackage/recommend_package?tabType=1">추천상품</a></li>
+								<li><a href="<%=jsp%>/eventNpackage/event_list">제휴이벤트</a></li>
+							</ul>
+							<ul>
+								<li><a href="<%=jsp %>/serviceinfo/reservation?abc=0&zyx=0">탑승안내</a></li>
+								<li><a href="<%=jsp %>/serviceinfo/baggage_guide?abc=1&zyx=0">수하물안내</a></li>
+								<li><a href="<%=jsp %>/serviceinfo/infant?abc=2&zyx=0">고객안내</a></li>
+								<li><a href="<%=jsp %>/serviceinfo/legroom?abc=3&zyx=0">부가서비스</a></li>
+							</ul>
+							<ul>
+								<li><a href="<%=jsp %>/board/noticeBoard/noticeBoard_list?pageNum=1&tabType=0">공지사항</a></li>
+								<li><a href="<%=jsp%>/serviceinfo/faq">FAQ</a></li>
+								<li><a href="<%=jsp %>/board/reviewBoard/reviewBoard_list?pageNum=1&reviewType=0">이용후기</a></li>
+							</ul>
+							<ul>
+								<c:if test="${memberName==null }">
+								    <li><a href="<%=jsp %>/account/signup/signup1">회원가입</a></li>
+								</c:if>
+								<c:if test="${memberName!=null }">
+                                    <li><a href="<%=jsp %>/account/change/account_info">회원정보</a></li>
+                                    <li><a href="<%=jsp %>/mypage/reservation_list">예약 현황</a></li>
+                                    <li><a href="<%=jsp %>/account/login/logout">로그아웃</a></li>
+                                    <li><a href="<%=jsp %>/account/change/account_delete">회원탈퇴</a></li>
+								</c:if>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="menuBg"></div>
+	</nav>
+	<div class="topBtn" title="맨 위로 이동">
+		<img src="<%=path %>/Resources/IMG/logo/logo_top.png"/>
+	</div>
+</header>

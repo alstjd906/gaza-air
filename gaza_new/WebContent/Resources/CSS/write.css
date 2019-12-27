@@ -1,0 +1,40 @@
+@charset "UTF-8";
+	#wrt_all{
+		margin:50px auto;
+		width:1200px;
+	}
+	
+	#wrt_frm div{ font-size:20px; }
+	
+	#sel{ height:30px; }
+	
+	#wrt_frm input{
+		height:30px;
+		margin-bottom:10px; 
+		float:left;
+	}
+	
+	hr{
+		margin:0px auto;
+		width:1200px;
+	}
+	
+	#list_btn{
+		margin:70px auto;
+		width:450px;
+		height:60px;
+		line-height:60px;
+		text-align:center;
+	}
+	
+	#list_btn>button{
+		width:150px;
+		height:60px;
+		font-size:18px;
+		border-radius:0px;
+	}
+	
+	#wrt_frm>div:not(.board-cont){
+		margin-bottom:10px;
+		height:35px;
+	}

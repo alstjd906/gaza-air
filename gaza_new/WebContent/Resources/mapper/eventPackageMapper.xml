@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.gaza.myapp.eventPackage.EPallianceInterface">
+<select id="getAllRecord" resultType="kr.gaza.myapp.eventPackage.AllianceVO">
+	select eventnum, eventname, eventthumbnail, eventimg, eventcontent, eventcompany, startdate, enddate from event order by eventnum desc
+</select>
+
+<select id="eventSelect" resultType="kr.gaza.myapp.eventPackage.AllianceVO">
+	select eventnum, eventname, startdate, enddate, eventimg from event where eventnum = #{eventNum}
+</select>
+</mapper>

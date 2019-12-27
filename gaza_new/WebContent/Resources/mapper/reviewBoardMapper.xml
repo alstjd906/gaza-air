@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.gaza.myapp.board.reviewBoard.ReviewBoardInterface">
+	<select id="reviewBoardTotalRecord" parameterType="int" resultType="int">
+		select count(reviewNum) from reviewBoard where reviewType=#{value}
+	</select>
+	
+	<select id="getAllRecord" resultType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO">
+			select reviewNum, reviewType, writer, subject, content, hit, to_char(regDate, 'YYYY.MM.DD') regDate from reviewBoard 
+			where reviewType=#{reviewType}
+			<if test="reviewType == 1">
+				and writer=#{writer}
+			</if>
+	</select>
+	
+	<select id="reviewBoardSelect" parameterType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO" resultType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO">
+			select reviewNum, reviewType, writer, subject, content, hit, to_char(regDate, 'YYYY.MM.DD') regDate 
+			from reviewBoard where reviewNum=#{reviewNum}
+	</select>
+	
+	<select id="reviewBoardGetPrevNext" parameterType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO" resultType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO">
+			select * from(
+				SELECT 
+				reviewNum, subject, 
+				lag(reviewNum, 1) over (order by reviewNum) prevNum, 
+				lag(subject, 1, '이전 글이 없습니다.') over (order by reviewNum) prevSubject, 
+				lead(reviewNum, 1) over (order by reviewNum) nextNum, 
+				lead(subject, 1, '다음 글이 없습니다.') over (order by reviewNum) nextSubject 
+				from reviewBoard where reviewType=#{reviewType}
+				<if test="reviewType == 1">
+				and writer=#{writer}
+				</if>
+			)
+			where reviewNum=#{reviewNum}
+	</select>
+	<update id="reviewBoardHit" parameterType="int">
+			update reviewBoard set hit= hit+1 where reviewNum=#{param1}
+	</update>
+	<insert id="reviewBoardInsert">
+			insert into reviewBoard values(reviewBoardNum_sq.nextVal, #{reviewType}, #{subject}, #{content}, #{writer}, 0, sysDate, #{ip}) 
+	</insert>
+	<select id="getInsertedNum" parameterType="String" resultType="int">
+			select reviewNum from (select reviewNum from reviewBoard where writer=#{value} order by reviewNum desc) where rownum = 1
+	</select>
+	<update id="reviewBoardUpdate" parameterType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO">
+			update reviewBoard set subject=#{subject}, content=#{content} where reviewNum=#{reviewNum}
+	</update>
+	<delete id="reviewBoardDelete" parameterType="int">
+			delete reviewBoard where reviewNum=#{value}
+	</delete>
+</mapper>

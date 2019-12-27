@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.gaza.myapp.HomeInterface">
+	<select id="getEvent" resultType="kr.gaza.myapp.eventPackage.AllianceVO">
+		select eventNum, eventName, eventContent, eventThumbnail, startDate, endDate from event order by eventNum DESC
+	</select>
+	<select id="getNotice" resultType="kr.gaza.myapp.board.noticeBoard.NoticeBoardVO">
+		select * from
+		(select noticeNum, noticeType, subject, to_char(regdate, 'MM.DD') regdate from noticeBoard order by noticeNum DESC)
+		<![CDATA[ 
+		where ROWNUM<=7
+		]]> 
+	</select>
+	<select id="getReview" resultType="kr.gaza.myapp.board.reviewBoard.ReviewBoardVO">
+		select * from
+		(select reviewNum, reviewType, subject, to_char(regdate, 'MM.DD') regdate from reviewBoard order by reviewNum DESC)
+		<![CDATA[ 
+		where ROWNUM<=7
+		]]> 
+	</select>
+</mapper>

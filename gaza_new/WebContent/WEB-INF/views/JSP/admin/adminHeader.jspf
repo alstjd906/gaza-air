@@ -1,0 +1,197 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>가자에어 관리자페이지</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="<%=resources %>/Admin/css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- MetisMenu CSS -->
+        <link href="<%=resources %>/Admin/css/metisMenu.min.css" rel="stylesheet">
+    
+        <!-- DataTables CSS -->
+        <link href="<%=resources %>/Admin/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    
+        <!-- DataTables Responsive CSS -->
+        <link href="<%=resources %>/Admin/css/dataTables/dataTables.responsive.css" rel="stylesheet">
+    
+        <!-- Custom CSS -->
+        <link href="<%=resources %>/Admin/css/startmin.css" rel="stylesheet">
+    
+        <!-- Custom Fonts -->
+        <script src="https://kit.fontawesome.com/9c923ac74a.js" crossorigin="anonymous"></script>
+
+        <style>
+            #side-menu {
+                max-height: calc(100vh - 71px);
+                overflow: hidden;
+            }
+            
+            #addBtn{
+			    text-align: center;
+			    cursor: pointer;
+			    transition: all 300ms;
+				background-color: #fff;
+				border: 1px solid #ccc;
+				margin-bottom : 10px;
+            }
+            table {
+                display: block;
+                overflow: scroll;
+                white-space: nowrap;
+            }
+            td { vertical-align: middle; }
+
+            .clearfix {zoom: 1;}
+            .clearfix:after {
+                content: '.';
+                clear: both;
+                display: block;
+                height: 0;
+                visibility: hidden;
+            }
+
+            .row2 {
+                max-width: 700px;
+                margin: 20px;
+            }
+
+            .col-tenth,
+            .col-nine-tenth { float: left; }
+            .col-tenth { width: 10% !important; }
+            .col-nine-tenth { width: 90% !important; }
+            
+            .submit-wrapper { text-align: right; margin-right: 20px; }
+            
+            div[class$=tenth]>input { width: 100%; }
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="<%=path %>">GazaAir</a>
+                </div>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+    
+                <!-- Top Navigation: Left Menu -->
+                <ul class="nav navbar-nav navbar-left navbar-top-links">
+                    <li><a href="<%=jsp%>/admin/admin_dash"><i class="fa fa-user fa-fw"></i>홈페이지</a></li>
+                </ul>
+    
+                <!-- Top Navigation: Right Menu -->
+                <ul class="nav navbar-right navbar-top-links">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> xx <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="<%=path%>/admin_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+    
+                <!-- Sidebar -->
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-user fa-fw"></i> 회원관리<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_admin">관리자계정</a>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_member">회원계정</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-plane-departure fa-fw"></i> 항공관련<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_airport">공항(airport)</a>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_airplane">비행기(airplane)</a>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_product">비행상품(product)</a>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_flight">여정(flight)</a>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_seat">좌석타입(seat)</a>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_seatReserve">좌석예약(reserve)</a>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_people">승객타입(people)</a>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_food">기내식(food)</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-sitemap fa-fw"></i> 게시판<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_notice">공지사항</a>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_review">이용후기</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-futbol-o fa-fw"></i> 이벤트<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#"> 추천상품<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="<%=jsp%>/admin/admin_recommend_kor">한국</a>
+                                                <a href="<%=jsp%>/admin/admin_recommend_asia">아시아</a>
+                                                <a href="<%=jsp%>/admin/admin_recommend_europe">유럽</a>
+                                                <a href="<%=jsp%>/admin/admin_recommend_america">미주</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="<%=jsp%>/admin/admin_alliance">제휴이벤트</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
